@@ -1,0 +1,1000 @@
+<html lang="en">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<title>FastCopy Help (en)</title>
+
+<style type="text/css">
+<!--
+.help_head1 {
+	color:#ff5555;
+	background-color:#0000cc;
+}
+.help_head2 {
+	color:white;
+	background-color:#0000cc;
+	margin-bottom:10px;
+}
+.help_head3 {
+	color:white;
+	background-color:#0000cc;
+	margin-bottom:5px;
+}
+.help_head4 {
+	color:white;
+	background-color:#0000cc;
+	margin-bottom:5px;
+}
+.help_head5 {
+	margin-bottom:0px;
+}
+.help_table {
+	border-style:solid;
+	border-collapse: separate;
+	background-color: #ddffdd;
+	border-color: #aaaaaa;
+	font-size: 95%;
+}
+.help_table_mini {
+	font-size: 90%;
+	margin: 10px;
+}
+.tr_default {
+	background-color: #aaffaa;
+}
+.help_all {
+	font-size: 95%;
+}
+.help_section {
+	margin-left:25px;
+	margin-bottom:30px;
+}
+.help_sub_section {
+	margin-left:10px;
+	margin-bottom:10px;
+}
+.help_mini_section {
+	background-color: #cccccc;
+	padding:2%;
+}
+.help_mini_section2 {
+	margin-top:3px;
+	background-color: #eeffff;
+	padding:2%;
+}
+.help_license {
+	border-color:#777777; 
+	border-style:solid; 
+	padding:2%;
+	background-color: #dddddd;
+}
+.help_license_cond {
+	padding:5%;
+}
+-->
+</style>
+</head>
+<body bgcolor="#eeffff">
+
+<div align="center">
+<h1 class="help_head1">FastCopy ver3.61</h1>
+</div>
+<div class="help_all">
+
+<div align="right">2018/11/08 H.Shirouzu and FastCopy Lab, LLC.</div>
+
+<a name="index"/>
+<h2 class="help_head2">Index</h2>
+<div class="help_section">
+	<a href="#about">1. About</a><br>
+	<a href="#license">2. License</a><br>
+	<a href="#environment">3. Environment</a><br>
+	<a href="#install">4. Installation</a><br>
+	<a href="#usage">5. Usage & Main Window</a><br>
+		<div class="help_sub_section">
+		<a href="#source_dst">1) Source/DestDir</a><br>
+		&nbsp;&nbsp;<a href="#backslash_behavior">The end of DestDir is '\' or not</a><br>
+		<a href="#mode">2) Operation mode</a><br>
+		<a href="#buttons">3) Button & Options</a><br>
+		<a href="#filter">4) Filters</a><br>
+		<a href="#reparse">5) Junction & Misc</a><br>
+		<a href="#menus">6) Menu items</a>
+		</div>
+	<a href="#settings">6. Settings</a><br>
+		<div class="help_sub_section">
+		<a href="#gen_settings">1) Main Settings</a><br>
+		<a href="#font">2) Shell Settings</a><br>
+		<a href="#finact">3) Post-Process</a><br>
+		<a href="#job">4) Job Management</a>
+		</div>
+	<a href="#cmdline">7. Command Line</a><br>
+	<a href="#warning">8. Warning</a><br>
+	<a href="#contact">9. Support Forum/Latest Version</a><br>
+	<a href="#misc">10. Misc (setting file, etc.)</a><br>
+	<a href="#history">11. History</a><br>
+</div>
+
+<a name="about"/>
+<h2 class="help_head2">1. About</h2>
+<div class="help_section">
+	FastCopy is <strong>the Fastest Copy/Backup Software on Windows</strong>.
+	<br><br>
+	It supports UNICODE and over MAX_PATH (260 characters) file pathnames.
+	<br><br>
+	<a name="disk_mode"/>
+	It automatically selects different methods according to whether Source and DestDir are in the same or different HDD(or SSD).
+	<table class="help_table" border="4">
+		<tr><td nowrap><strong>Diff HDD</strong></td><td>Reading and writing are processed respectively in parallel by separate threads.</td></tr>
+		<tr><td nowrap><strong>Same HDD</strong></td><td>Reading is processed until the big buffer fills. When the big buffer is filled, writing is started and processed in bulk.</td></tr>
+	</table>
+	<br>
+	Reading/Writing are processed with no OS cache, so other applications do not become slow.
+	<br><br>
+	It can achieve Reading/Writing performance that is close to the device limit.
+	<br><br>
+	Include/Exclude Filter (UNIX Wildcard style) can be specified. ver3.0 or later, Relative Path can be specified.
+	<br><br>
+	It runs fast and does not hog resources, because MFC is not used. (Designed using Win32 API and C Runtime only) 
+	<br><br>
+	You can modify this software, because all source code has been opened to the public under the GPL ver3 license. 
+	<br><br>
+	<strong>ver3.0 or later, FastCopy's settings file has been renamed from FastCopy.ini to <font color="red">FastCopy2.ini</font>.</strong>
+</div>
+
+<a name="license"/>
+<h2 class="help_head2">2. License</h2>
+<div class="help_section">
+	<div class="help_license">
+	FastCopy ver3.x Copyright(C) 2004-2018 by SHIROUZU Hiroaki and FastCopy Lab, LLC.<br>
+	<br>
+	This program is free software. You can redistribute it and/or modify it under the GNU General Public License version 3.<br>
+	<a href="license-gpl3.txt">license-gpl3.txt</a><br>
+	<br>
+	</div><br>
+	<div class="help_license">
+	xxHash Library Copyright (c) 2012-2014, Yann Collet All rights reserved.<br>
+	<a href="xxhash-LICENSE.txt">License details.</a>
+	</div>
+</div>
+
+<a name="environment"/>
+<h2 class="help_head2">3. Environment</h2>
+<div class="help_section">
+	Windows Vista/7/8/8.1/10<br>
+	Windows 2008(&R2)/2012(&R2)/2016
+</div>
+
+<a name="install"/>
+<h2 class="help_head2">4. Installation</h2>
+<div class="help_section">
+	<h3 class="help_head3">Installation</h3>
+	<div class="help_sub_section">
+		Please run FastCopy3xx_installer.exe, and install it in a new directory. <br>
+		If you want to install in USB memory or etc, please use "Extract" button in installer.<br>
+		run with /h option, it shows the installer options. (/silent, /extract or etc)
+	</div>
+
+	<h3 class="help_head3">Uninstallation</h3>
+	<div class="help_sub_section">
+		In Win7 or later, you can uninstall from "Apps &amp; features (or Program and Features)".<br>
+		Or you can use setup.exe located in the installed directory.<br>
+		run with /r /silent option, it means silent uninstallation.
+	</div>
+</div>
+
+<a name="usage"/>
+<h2 class="help_head2">5. Usage & Main Window</h2>
+<div class="help_section">
+	Main window when minimized appears in task notification area. <br>
+
+	When running, various statuses are displayed. <br>
+	(Inside the file number's parentheses is the number of directories.)
+
+	<a name="source_dst"/>
+	<h3 class="help_head3">Source / DestDir</h3>
+	<div class="help_sub_section">
+		FastCopy retains the history of 10 entries in Source/DestDir. (This can be increased or decreased in the Option | Main settings dialog.)<br>
+		If you want to specify two or more files/dirs in the Source field, please describe a pathname line by line.<br>
+		If you want to add files/dirs to the Source field by using drag and drop, simply drop while pushing CTRL.<br>
+		<br>
+		You can also drag & drop to DestDir field.
+
+		<a name="backslash_behavior"/>
+		<h4 class="help_head4">The behavior depends on whether or not '\' is the end of DestDir.</h4>
+		<table class="help_table" border="4">
+			<tr><td nowrap><strong>1. The last character of DestDir is '\'</strong></td><td>
+			Copy Source directory, including itself, to DestDir.<br>
+			(DestDir\SourceDir\Contents_of_SourceDir)
+			</td></tr>
+			<tr><td nowrap><strong>2. The last character of DestDir is NOT '\'</strong></td><td>
+			Copy Source directory's contents to DestDir.<br>
+			(DestDir\Contents_of_SourceDir)<br>
+
+			However, if multiple directories are specified in Source, the behavior will be changed to 1.<br><br>
+			<strong>(mini tips)</strong> If you want to copy Source directory's contents to the DestDir that is specified drive root, please append "*" to Source directory.<br>
+			For example, if Source is "C:\Folder1\*" and DestDir "D:\", the result is D:\(Contents_of_Folder1)
+			</td></tr>
+		</table>
+
+	</div>
+
+	<a name="mode"/>
+	<h3 class="help_head3">Operation mode</h3>
+	<div class="help_sub_section">
+		<table class="help_table" border="4">
+		<tr><th>Mode</th><th>Detail</th>
+		<tr><td nowrap><strong>Diff (No Overwrite)</strong></td>
+		  <td>Copy if the same filename does not exist in destination.</td></tr>
+		<tr class="tr_default"><td nowrap><strong>Diff (Size/date)</strong></td>
+		  <td>Copy if size or date is different, or if it does not exist (in default)</td></tr>
+		<tr><td nowrap><strong>Diff (Newer)</strong></td>
+		  <td>Copy if source file timestamp is newer or does not exist.</td></tr>
+		<tr><td nowrap><strong>Copy (Overwrite)</strong></td>
+		  <td>Always copy/overwrite all.</td></tr>
+		<tr><td nowrap><strong>Sync (Size/date)</strong></td>
+		  <td>Copy if size or date is different, or it does not exist.<br>
+		  In addition, delete all destination files/directories that do not exist in Source. </td></tr>
+		<tr><td nowrap><strong>Move (Overwrite)</strong></td>
+		  <td>Always copy/overwrite all and delete all copied source files.<br>
+		  (To change select "Move (Overwrite all)" -> "Move (Size/date)" in the settings dialog.)</td></tr>
+		<tr><td nowrap><strong>Delete</strong></td>
+		  <td>Delete all files/dirs forcibly.</td></tr>
+		</table>
+	</div>
+
+	<a name="buttons"/>
+	<h3 class="help_head3">Buttons & Options</h3>
+	<div class="help_sub_section">
+		<a name="mainwin"/>
+		<table class="help_table" border="4">
+		<tr><td nowrap><strong>Execute</strong></td>
+		<td>The copy operation is executed. While executing, the button changes to "Cancel..." button. <br> - <strong>While pushing CTRL</strong>, the confirmation dialog is displayed.</td></tr>
+		<tr><td nowrap><strong>Listing</strong></td>
+		<td>The files and directories list that will be copied and deleted are displayed. '+' means copying, and '-' means deleting.<br>
+		- <strong>While pushing CTRL</strong> (button label "listing" -> "listing+v"), compare the file pairs that will be skipped (except skipping by filter).<br>
+		- <strong>While pushing Shift</strong> (and if filelog is enabled), write listing contents to filelog. (If FileDate/FileSize option in log settings is enabled, this information will be shown/written)
+		</td></tr>
+		<tr><td nowrap><strong>Buffer size</strong></td>
+		<td>Show the size(MB) of the main buffer for Read/Write operations. If it is clicked, setting dialog will be opened. </td></tr>
+		<tr><td nowrap><strong>Speed Control</strong></td>
+		<td>Specify "Full Speed", "Auto Slow"(*1), "90%"~"10%", "Suspend".<br>
+		If you feel it is hogging resources, it is recommended to set to "Auto Slow" (If mouse movement is detected, or active window is changed (and FastCopy window is not in the foreground), it will be slowed down).<br>
+		If "Full Speed" is not selected, low process priority class is set.<br>(This setting is not saved by <a href="#job">job manage</a>)</td></tr>
+		<tr><td nowrap><strong>NonStop</strong></td>
+		<td>Don't interrupt even if errors occur by Read/Write/Delete, and keep processing as much as possible. <br>
+		(However, errors are displayed in the main window, and recorded in the error log.)</td></tr>
+		<tr><td nowrap><strong>Verify</strong></td>
+		<td>
+		<a name="verify"/>
+		<a name="hash_mode"/>Verify written files data by xxHash (MD5/SHA-1/SHA-256). <br>
+		(If you want to use MD5/SHA-1/SHA-256, it can be selected in <a href="#setting_copyopt">Copy/Move Options</a> of settings.)<br>
+
+		Action detail: Read(Src) -> xxHash(Src) -> Write(Dst) -> Read(Dst) -> xxHash(Dst) -> Compare xxHash(Src/Dst) (All actions are processed in parallel as much as possible)
+		 <br><br>
+		if verify error occurs, hash values of src/dest are shown, and it is renamed dest-filename with .fc_verify_err.<br>
+		(Depending on the setting, it can be removed it instead of renaming)
+		</td></tr>
+		<tr><td nowrap><strong>Estimate</strong></td>
+		<td>Display the estimated complete time. This will make FastCopy investigate files/dirs to be copied, before starting.</td></tr>
+		<tr><td nowrap><strong>Start at once</strong></td>
+		<td>
+		Start at once without waiting for other FastCopy instances executing to finish. (This button does not show when another FastCopy is not copying.)
+		(<a href="#setting_parallel">parallel running</a>)</strong></td></tr>
+		</table>
+		(*1) It is slowed down if the FastCopy window is not in the foreground and mouse movement is detected, by waiting between I/O, changing process priority, changing I/O priority, and changing maximum I/O size.<br>
+		<br>
+		<a name="options"/>
+		<table class="help_table" border="4">
+		<tr><td><strong>ACL</strong></td>
+		<td>Copy Access Control List (ACL). (Only applicable to NTFS)<br>
+		<strong>(It is recommended to use with <a href="#elevate">Administrative privilege</a>)</strong><br>
+		In addition, Extended Attribute(EA) will also be copied.</td></tr> 
+		<tr><td><strong>Alt Stream</strong></td>
+		<td>Copy Alternate Stream. (Only applicable to NTFS)</td></tr>
+		<tr><td><strong>Wipe & Delete (prevent deleted files reviving)</strong></td>
+		<td>Rename filename and Overwrite random data before deleting. Alternate stream is not overwritten. If NSA method is checked in setting dialog, Overwriting Random data process runs twice, and overwriting NULL data process runs once.</td></tr>
+		</table>
+	</div>
+
+	<a name="filter"/>
+	<h3 class="help_head3">Filter Options</h3>
+	<div class="help_sub_section">
+		It can Include/Exclude the copy target files/directories that match/unmatch by filters.<br>
+		Select the "listing" button to confirm the copy target files/directories list.<br>
+		<br>
+		<table class="help_table" border="4">
+		<tr><td><strong>Include</strong></td>
+		<td>Only files or directories that match the specified string (UNIX wildcard format is allowed) will be copied.<br>
+		Include filter strings can be specified (<a href="#wild_card">UNIX wildcard format). (<a href="#filter_ps">Note</a>)<br>
+		If you want to specify two or more strings, please use semicolon as separator.<br>
+		If you want to specify directories, please add '\' to the end of directory name.<br>
+		 (For example: *.txt; My Folder [0-9]\)<br>
+		<strong>ver3.0 or later, <a href="#long_filter">relative path filter</a> is available.</strong>
+		</td></tr>
+		<tr><td><strong>Exclude</strong></td>
+		<td>Don't copy files/directories that match the specified strings.</td></tr>
+		<tr><td colspan="2"><strong>The following filters are enabled when "Option" -> "Show Extended filter" is checked.</strong></td></tr>
+		<tr><td><strong>FromDate</strong></td>
+		<td>Don't copy files with timestamps older than a specified date(<a href="#date_filter">format</a>).<br>
+		This can be specified by not only absolute format ("20090322" or "2016/09/26 12:30:56") but also by relative format (10 days before ... "-10D").</td></tr>
+		<tr><td><strong>ToDate</strong></td>
+		<td>Don't copy files with timestamps newer than this specified date.</td></tr>
+		<tr><td><strong>MinSize</strong></td>
+		<td>Don't copy the files with sizes that are smaller than the specified size.<br>
+		High number can be abbreviated using K/M/G/T character (Kilo/Mega/Giga/Tera).</td></tr>
+		<tr><td><strong>MaxSize</strong></td>
+		<td>Don't copy the files with sizes bigger than the specified size.</td></tr>
+		</table>
+		<br>
+		<a name="filter_ps"/>
+		Note 1) In delete mode, it does not delete directories when "only files and not directories" are specified in the Include field.<br> 
+		Note 2) When one or more files are specified in the Include field, files that do not match are not copied.<br>
+		Note 3) When one or more directories are specified in the Include field, directories that do not match are not copied.<br>
+		<br>
+
+		<a name="long_filter"/>
+		<table class="help_table" border="4">
+		<tr><td><strong>Relative path filter</strong></td><td>
+			If the first character of Include/Exclude string items is not '\', it will be Relative path filter. This mode is tail matching policy.<br>
+			
+
+			<table class="help_table_mini" border="1">
+			<tr class="tr_default"><td colspan="2"><strong>Example of the directory Include</strong></td></tr>
+			<tr><td>Source</td><td>C:\dir\</td></tr>
+			<tr><td>Include</td><td>subdir[1-9]\xxx\</td></tr>
+			<tr><td>Match examples</td><td>
+				C:\dir\subdir2\xxx\<br>
+				C:\dir\aaa\subdir3\xxx\
+			</td></tr>
+			<tr><td>Effect</td><td>Matched directories and all under them will be copied.</td></tr>
+			</table>
+
+			<table class="help_table_mini" border="1">
+			<tr class="tr_default"><td colspan="2"><strong>Example of the file Include</strong></td></tr>
+			<tr><td>Source</td><td>C:\dir\</td></tr>
+			<tr><td>Include</td><td>subdir[1-9]\file.*</td></tr>
+			<tr><td>Match examples</td><td>
+				C:\dir\aaa\subdir2\file.txt<br>
+				C:\dir\bbb\ccc\subdir3\file.doc
+			</td></tr>
+			<tr><td>Effect</td><td>Matched files will be copied.</td></tr>
+			</table>
+
+		</td></tr>
+		<tr><td><strong>Forward match filter</strong></td><td>
+			If the start character of Include/Exclude string items is '\', it will be Forward match filter. This mode is head -> tail matching policy.<br>
+
+			<table class="help_table_mini" border="1">
+			<tr class="tr_default"><td colspan="2"><strong>Example of the directory Include</strong></td></tr>
+			<tr><td>Source</td><td>C:\dir\</td></tr>
+			<tr><td>Include</td><td><strong>\</strong>subdir[1-9]\xxx\</td></tr>
+			<tr><td>Match examples</td><td>
+				C:\dir\subdir2\xxx\<br>
+				C:\dir\subdir3\xxx\
+			</td></tr>
+			<tr><td>Effect</td><td>Matched directories and all under them will be copied.</td></tr>
+			<tr><td>Note (unmatch example)</td><td>C:\dir\aaa\subdir2\xxx\ ... different hierarchy.</td></tr>
+			</table>
+
+			<table class="help_table_mini" border="1">
+			<tr class="tr_default"><td colspan="2"><strong>Example of the file Include</strong></td></tr>
+			<tr><td>Source</td><td>C:\dir\</td></tr>
+			<tr><td>Include</td><td><strong>\</strong>subdir[1-9]\file.*</td></tr>
+			<tr><td>Match examples</td><td>
+				C:\dir\subdir2\file.txt<br>
+				C:\dir\subdir3\file.doc<br>
+			</td></tr>
+			<tr><td>Effect</td><td>Matched files will be copied.</td></tr>
+			<tr><td>Note (unmatch example)</td><td>C:\dir\aaa\subdir2\file.txt ... different hierarchy.</td></tr>
+			</table>
+
+		</td></tr>
+		<tr><td><strong>Start point of filter check</strong></td><td>
+			If Source is either C:\src\, C:\src\file.txt or C:\src\dir*, the start point(beginning) of the filter check will be C:\src\<br>
+		</td></tr>
+		</table>
+		<br>
+
+		<a name="wild_card"/>
+		<strong>Include/Exclude filter(wildcard) format.</strong>
+		<table class="help_table" border="4">
+		<tr><td>*</td><td>Zero or more arbitrary characters</td>
+		<tr><td>?</td><td>One arbitrary character</td>
+		<tr><td>[abc]</td><td>One character in "abc"</td>
+		<tr><td>[!abc]</td><td>One character except "abc".<br>'^' can also be used instead of '!'.</td>
+		<tr><td>[a-z]</td><td>One character in "abc...xyz"</td>
+		<tr><td>\</td><td>'\' as Start character means <a href="#long_filter">Forward match filter</a>. The middle of '\' is separator of path items. In addition, the end of '\' means "This is a filter item for directory". However, '\' in character class([]), it means escape character.</td>
+		</table>
+		<br><br>
+
+		<a name="date_filter"/>
+		<strong>FromDate/ToDate filter format.</strong>
+		<table class="help_table" border="4">
+		<tr><td>Absolute</td><td>Specify "YYYYMMDD[hhmmss]"(year/month/day/hours/minutes/seconds).<br> ex) "20090322" or "2016/09/26 12:30:56"</td>
+		<tr><td>Relative</td><td>Specify "+|- number W|D|h|m|s".<br>
+		W|D|h|m|s means Weeks/Days/hours/minutes/seconds.<br>
+		ex) "-12h" <strong>(This is case sensitive.)</strong></td>
+		</table>
+	</div>
+
+	<a name="reparse"/>
+	<h3 class="help_head3">Junction and SymLink</h3>
+	<div class="help_sub_section">
+		Junction(include MountPoint) and Symlink is supported in ver1.70 or later.<br>
+		<table class="help_table" border="4">
+		<tr><th>Mode</th><th>Details</th>
+		<tr><td nowrap><strong>Diff/Copy</strong></td>
+		  <td>Copy Junction/Symlink itself.<br>
+		  If you want to change the copy Junction/Symlnk's target(not Junction/Symlnk itself), it can be changed in <a href="#setting_copyopt">the options settings</a></td></tr>
+		<tr><td nowrap><strong>Move</strong></td>
+		  <td>Always move Junction/Symlink itself.</td></tr>
+		<tr><td nowrap><strong>Delete</strong></td>
+		  <td>Always delete Junction/Symlink itself.</td></tr>
+		</table>
+	</div>
+
+	<a name="hardlink"/>
+	<h3 class="help_head3">HardLink</h3>
+	<div class="help_sub_section">
+		HardLink can be reproduced as much as possible, when <a href="#linkdest">/linkdest</a> option is specified. (in ver1.95 or later).<br>
+		(The display of "TotalFiles:" changes from "number_of_files (number_of_dirs)" to "number_of_files / number_of_created_hardlinks (number_of_dirs)").<br>
+		<br>
+		Two very important notes:<br>
+		1. It needs 2-4MB per 10 thousand hardlink files. (It depends on path length)<br>
+		2. The speed will drop, because all files are opended to obtain the number of links.<br>
+		<br>
+		If /linkdest option is enabled, <a href="#recreate">/recreate</a> option is enabled tacitly.<br>
+		If you want always to enable /linkdest option, write [main] linkdest=1 in FastCopy2.ini file.<br>
+	</div>
+
+	<a name="menus"/>
+	<h3 class="help_head3">Menu items</h3>
+	<div class="help_sub_section">
+		<h4 class="help_head4">File</h4>
+		<div class="help_sub_section">
+			<table class="help_table" border="3">
+			<tr><td nowrap><strong>Open Log</strong></td><td>Open FastCopy.log</td></tr>
+			<tr><td nowrap><strong>Open LastFileLog</strong></td>
+				<td>If it is checked <a href="#setting_log">Write to FileLog</a>, open the last finished filelog. </td></tr>
+			<tr><td nowrap><strong>Open FastCopy Dir</strong></td><td>Open the user directory of FastCopy</tr>
+			<tr><td nowrap><strong>Save as Init Pos</strong></td><td>Save position as initial FastCopy window.</td></tr>
+			<tr><td nowrap><strong>Save as Init Size</strong></td><td>Save size as initial FastCopy window</td></tr>
+			<tr><td nowrap><strong>Always &Top Most</strong></td><td>Always display at the top most</td></tr>
+			<tr><td nowrap><strong>Close</strong></td><td>Close FastCopy</td></tr>
+			</table>
+		</div>
+		<h4 class="help_head4">Help</h4>
+		<div class="help_sub_section">
+			<table class="help_table" border="3">
+			<tr><td nowrap><strong>Help</strong></td><td>Show this help</td></tr>
+			<tr><td nowrap><strong>Check Update</strong></td>
+				<td>Access <a href="https://fastcopy.jp/fastcopy-update.dat">https://fastcopy.jp/fastcopy-update.dat</a> and check to require to update.</td></tr>
+			<tr><td nowrap><strong>Support Forum</strong></td><td>Questions/Opinions about FastCopy</td></tr>
+			<tr><td nowrap><strong>Latest Version</strong></td><td>Open FastCopy WebPage</td></tr>
+			<tr><td nowrap><strong>About FastCopy</strong></td><td>Show Version and Copyright</td></tr>
+			</table>
+		</div>
+		<a name="elevate">
+		<h4 class="help_head4">Elevate</h4>
+		<div class="help_sub_section">
+			Elevate administrative privilege. If it is, the title bar will show "(Admin)".
+		</div>
+		<h4 class="help_head4">Other menu items</h4>
+		<div class="help_sub_section">
+			<a href="#job">JobMng</a> <a href="#settings">Settings</a>
+		</div>
+	</div>
+</div>
+
+<a name="settings"/>
+<h2 class="help_head2">6. Settings</h2>
+<div class="help_section">
+	<a name="gen_settings"/>
+	<h3 class="help_head3">Settings -> Main Settings</h3>
+	<div class="help_sub_section">
+		Main settings. (change Default values, I/O parameters, and Copy Options, etc.)
+		<a name="setting_default"/>
+		<h4 class="help_head4">Defaults</h4>
+		<div class="help_sub_section">
+		Specify default parameters for Main Window<br>
+
+		<table class="help_table" border="4">
+		<tr><td nowrap><strong>Default parameters for Main Window</strong></td><td>The detail is <a href="#mainwin">this</a>.</td></tr>
+		<tr><td nowrap><strong>Language</strong></td><td>Change Language. (need to restart) </td></tr>
+		</table>
+
+		</div>
+
+		<a name="setting_io"/>
+		<h4 class="help_head4">I/O settings</h4>
+		<div class="help_sub_section">
+			fundamental parameter of I/O
+
+			<table class="help_table" border="4">
+			<tr><td nowrap><strong>Main Buffer (MB)</strong></td><td>
+			Specify main buffer size for reading/writing.
+			</td></tr>
+
+			<tr><td nowrap><strong>I/O unit (MB)</strong></td><td>Parallel Read/Write request unit size for OS.<br>
+				"I/O unit" * "OverLap I/O Num" is the (effective) Max I/O size for OS.<br>
+				1MB I/O unit size is the best performance for many environments, especially if network drive is used.<br>
+			(<a href="#mainwin">Buffer size</a> must be at least twice the Max I/O Size)</td></tr>
+
+			<tr><td nowrap><strong>OverLap I/O Num</strong></td><td>I/O performance(especially network drive) is improved by using overlapped ReadFile/WriteFile I/O.<br>
+			(<strong>If it is specified "1", it will not be used overlapped I/O</strong>)</td></tr>
+
+			<tr><td><strong>MinSectorSize is regarded as 4KB</strong></td><td>
+			If destination drive are 512B sector HDD that has mounted 4KB sector HDD, please check this.
+			</td></tr>
+			</table>
+			<br>
+
+			<table class="help_table" border="4">
+			<tr><th colspan="2">OS Cache settings</th></tr>
+			<tr><td nowrap><strong>Use OS buffer for reading</strong></td><td>It does not use DirectI/O. OS is likely to be slow/heavy, it can not be recommended.</td></tr>
+			<tr><td nowrap><strong>Use OS buffer for writing</strong></td><td>It does not use DirectI/O, if the filesize is under the specified size(KB)<br>
+				The disadvantages are the same as for reading. It will be faster for only very small files that use Direct I/O because of less head seeking time.</td></tr>
+			</table>
+			<br>
+
+			<table class="help_table" border="4">
+			<tr><th colspan="2">Directory Fetch</th></tr>
+			<tr><td nowrap><strong>Enable Large fetch mode (Win7 or later only)</strong></td><td>Enable <a href="https://msdn.microsoft.com/ja-jp/library/windows/desktop/aa364419(v=vs.85).aspx" target="_blank">FIND_FIRST_EX_LARGE_FETCH</a> flag and improve directory fetch performance.</td></tr>
+			</table>
+		</div>
+
+		<a name="setting_physical"/>
+		<h4 class="help_head4">Drive Group</h4>
+		<div class="help_sub_section">
+			Settings of physical drive group (<a href="#setting_physical_ps">*1</a>)<br>
+			FastCopy detects physical drive group automatically. However, in some situation(RAID,TrueCrypt or etc.), it can not detect automatically and it requires manual settings.<br>
+			<table class="help_table" border="4">
+			<tr><th colspan="2">Manual settings of physical drive group</th></tr>
+			<tr><th>About</th><td>Specify same physical drive group.<br>
+				</td></tr>
+			<tr><th nowrap>Format</th><td>If C: and D: are the same physical HDD, and E: and F: are the same, please specify "CD,EF"<br>
+			If you use UNC path, you can assign the drive letter for UNC or specify set decision policy below.</td></tr>
+			</table>
+			<br>
+
+			<table class="help_table" border="4">
+			<tr><th colspan="2">Physical drive group decision policy of network drive</th></tr>
+			<tr><th>Details</th><td>Network drives are in the same physical HDD(or SSD) or not<br>
+					This decision policy always uses UNC name even if it is specified as the drive letter that is a network drive (<a href="#setting_physical_ps2">*2</a>)<br>
+				</td></tr>
+			<tr><th>Same UNC_share are same physical drive group.</th><td>If UNC name is \\Server1\vol1\, \\Server1\vol1\ is the same physical HDD group, and \\Server1\vol2\ is not the same.</td></tr>
+			<tr><th>Same UNC_server are same physical drive group</th><td>If UNC name is \\Server1\vol1\, \\Server1\ is the same physical HDD group, and \\Server2\... is not the same.</td></tr>
+			<tr><th>All UNC_server are same physical drive group</th><td>All Network drives are the same HDD group</td></tr>
+			</table>
+			<a name="setting_physical_ps">
+			(*1) If Parallel Read/Write are issued in the same physical HDD, it will be slow because many HDD head seeks will occur. So FastCopy has two running modes as <a href="#disk_mode">same or diff HDD mode</a>.<br>
+			<a name="setting_physical_ps2">
+			(*2) If your network bandwidth is not enough, it is recommended to choose "All UNC_server are same"
+		</div>
+
+		<a name="setting_parallel"/>
+		<h4 class="help_head4">Parallel running</h4>
+		<div class="help_sub_section">
+			Specifying the number of parallel running FastCopy.<br>
+			<table class="help_table" border="4">
+			<tr><th>Max number of running FastCopy procs</th>
+			<td>If a lot of of instances of FastCopy are running in parallel, it requires much memory and CPU resource.<br>
+			<strong>If another FastCopy already running uses the same physical HDD</strong>, FastCopy will wait for the previous FastCopy to finish.<br>
+			Manual settings physical drive group is <a href="#setting_physical_ps">available</a>.
+			</td></tr>
+			<tr><td><strong>Don't wait for another FastCopy running to finish</strong></td><td>(Ignore the above settings) It always starts quickly.</td></tr>
+			</table>
+		</div>
+
+		<a name="setting_copyopt"/>
+		<h4 class="help_head4">Copy/Move Options</h4>
+		<div class="help_sub_section">
+			Copy/Move options
+			<table class="help_table" border="4">
+			<tr><td><strong>Don't create empty directory, if "filter" is checked</strong></td>
+			  <td>After using the filter, if there isn't a file for copying, FastCopy won't make directories.</td></tr>
+			<tr><td><strong>Use a modified name, if destdir is the same as src's parent</strong></td>
+			  <td>If DestDir is the same as src's parent directory, create a new name like "source(1)" and continue</td></tr>
+			<tr><td><strong>Copy Junction/Symlink as Junction/Symlink(not target)</strong></td>
+			  <td>Copy Junction/Symlink as Junction/Symlink.<br>
+					If this check is off, it will be copy Junction/Symlink's target directory/file (<a href="#junction_ps">*1</a>)<br>
+					(This option is ignored in "move" or "delete" mode)<br>
+					Note: It requires administrator privilege to create Symlink</td></tr>
+			<tr><td><strong>Change "Move(Overwrite)" to "Move(Date/Size)"</strong></td>
+			  <td>If there is a file with the same date and size as the move destination, it is deleted from the move source without copying.</td></tr>
+			<tr><td><strong>Move one by one</strong></td>
+				<td>Normally it won't delete original files until the move files list is full.<br>
+					This option changes the behavior to "a file has copied, and remove copied source file"</td></tr>
+			<tr><td><strong>Move one by one (verify)</strong></td>
+				<td>It is the same as "Move one by one" except "remove copied source files" -> "remove verified source files"</td></tr>
+			<tr><td><strong>Tolerance at the timestamp comparison</strong></td><td>Specify tolerance timestamp difference as same date in Diff(Date/Size) or Diff(Newer).<br>
+			Normally, FastCopy corrects timestamp difference on the different filesystem(NTFS timestamp precision is 100ns, FAT is 2sec or etc.), automatically.<br>
+			However, some NAS timestamp precision is very strange, so manual settings(in msec) are available.</td></tr>
+			<tr><td><strong>Hash mode (for verify)</strong></td>
+				<td>Select Hash mode (xxHash/MD5/SHA-1/SHA-256) for verifying.</td></tr>
+			<tr><td><strong>If a verify error occurs,<br> delete the file instead of renaming to .fc_verify_err</strong></td>
+				<td>(Same as left)</td></tr>
+			</table>
+			<a name="junction_ps">
+			<strong>(*1)</strong>For example, "C:\Users\(user)\AppData\Local\Application Data" points to "C:\Users\(user)\AppData\Local". If you try to copy this with "Copy Junction/Symlink as Junction/Symlink" disabled, it will infinitely recurse. (C:\Users\(user)\AppData\Local\Application Data\Application Data\Application Data\...). Therefore, be careful when you disable "Copy Junction/Symlink as Junction/Symlink".
+		</div>
+
+		<a name="setting_del"/>
+		<h4 class="help_head4">Delete options</h4>
+		<div class="help_sub_section">
+			Delete options.
+			<table class="help_table" border="4">
+			<tr><td><strong>Try to delete directory, even if "Filter" is checked.</strong></td>
+			  <td>By default, it does not delete directory, if "Filter" is checked.<br>
+				If it is checked, it always tries to delete directories. (<a href="#filter_ps">attention</a>)</tr>
+			<tr><td><strong>Use NSA method for Wipe & Delete option</strong></td>
+			  <td>If "Wipe & Delete" option is used, it is overwritten 3 times (random-data 2 times and zero-data 1 time), before renaming and deleting</td></tr>
+			</table>
+		</div>
+
+		<a name="setting_log"/>
+		<h4 class="help_head4">Log Settings</h4>
+		<div class="help_sub_section">
+			Log Settings
+			<table class="help_table" border="4">
+			<tr><td nowrap><strong>Number of history items for Source/DestDir</strong></td><td>need to restart FastCopy</td></tr>
+			<tr><td nowrap><strong>Write to Error log</strong></td><td>Logging error message to FastCopy.log</td></tr>
+			<tr><td nowrap><strong>Use UTF-8 in Errlog</strong></td><td>Using UTF-8 character in FastCopy.log. Otherwise using MBCS.</td></tr>
+			<tr><td nowrap><strong>Write to File Log</strong></td><td>Creating Log\(date).log and logging to all copied/deleted/error files.
+				<table class="help_table" border="2">
+				<tr><td nowrap><strong>FileDate</strong></td><td>Logging file timestamp</td></tr>
+				<tr><td nowrap><strong>FileSize</strong></td><td>Logging file size</td></tr>
+				</table>
+			</td></tr>
+			<tr><td nowrap><strong>Write ACL errors to Error Log</strong></td><td>Sometimes, many errors will occur in non NTFS (Samba, or etc.)</td></tr>
+			<tr><td><strong>Write AltStream errors to Error Log</strong></td><td>Sometimes, many errors will occur in non NTFS (Samba, or etc.)</td></tr>
+			</table>
+
+			<br>
+			The meaning of the symbols in the log.
+			<table class="help_table" border="4">
+			<tr><td nowrap>+</td><td>Create file / directory</td></tr>
+			<tr><td nowrap>-</td><td>Delete file / directory</td></tr>
+			<tr><td nowrap>-&gt;</td><td>Create Symblic-link/Junction</td></tr>
+			<tr><td nowrap>=&gt;</td><td>Create Hardlink</td></tr>
+			<tr><td nowrap>!!</td><td>Verify error (mismatch of hash value)</td></tr>
+			</table>
+		</div>
+
+		<a name="setting_shell"/>
+		<h4 class="help_head4">Shell Extension</h4>
+		<div class="help_sub_section">
+			Enable/Disable Shell Extension<br>
+			If it is started by normally user, it will be a personal shell extension. If it is started by administrator privileges, it will be all users shell extension.
+		</div>
+
+		<a name="setting_tray"/>
+		<h4 class="help_head4">At minimizing</h4>
+		<div class="help_sub_section">
+			Use taskbar instead of task notification area at minimizing
+		</div>
+
+		<a name="setting_misc"/>
+		<h4 class="help_head4">Misc</h4>
+		<div class="help_sub_section">
+			Misc settings.
+			<table class="help_table" border="4">
+			<tr><td nowrap><strong>Update check at startup</strong></td><td>Update check if arg is not specified</td></tr>
+			<tr><td nowrap><strong>Confirm before executing</strong></td><td>Confirming</td></tr>
+			<tr><td nowrap><strong>Info Update Span</strong></td><td>Information Update Span can be specified.</td></tr>
+			<tr><td><strong>Balloon Notification at the finish</td><td>Enable balloon notification at the finish, if it is minimized.</td></tr>
+			<tr><td><strong>Prevent auto sleep during copying</td><td>Prevent auto sleep(by OS) during copying.<br>(Note: If an error dialog is shown, FastCopy doesn't prevent auto sleep)</td></tr>
+			<tr><td nowrap><strong>English UI</strong></td><td>(It has no effect in English OS) English UI mode will be set. In order for English UI to take effect, you need to restart FastCopy</td></tr>
+			</table>
+		</div>
+	</div>
+
+	<a name="font"/>
+	<h3 class="help_head3">Option -> Font Settings -> Change/Reset Main Font</h3>
+	<div class="help_sub_section">
+		Change/Reset Main information font in Main Window.<br>
+		It is recommended to use fixed pitch font.
+	</div>
+
+	<h3 class="help_head3">Option -> Auto/Same/Diff HDD mode</h3>
+	<div class="help_sub_section">
+		Specify <a href="#disk_mode">Auto/Same/Diff HDD mode</a>(default: Auto).<br>
+		CTL + K shortcut toggles between disk modes (auto -> same -> diff ->...)<br>
+	</div>
+
+	<a name="finact"/>
+	<h3 class="help_head3">Post-Process</h3>
+	<div class="help_sub_section">
+		Select Post-Process.<br>
+		Allows user to change default settings (sound, command, and standby/hibernate/shutdown) after copy process/execution is complete.  Also, user can add new Post-Process settings.
+		<table class="help_table" border="4">
+		<tr><th colspan="2">Post-Process Window</th></tr>
+		<tr><td nowrap><strong>ActionName</strong></td><td>By default, Normal/Standby/Hibernate/Shutdown are ready.<br>
+			New actions can be created.</td></tr>
+		<tr><td nowrap><strong>Play Sound</strong></td><td>Play sound at finish<br>
+			<strong>Only play, if error occurred</strong> option is available.</td></tr>
+		<tr><td nowrap><strong>Execute command</strong></td><td>Specify commands at finish.<br>
+			<strong>Execute at</strong> Always/no error/error" can be specified.<br>
+			If "<strong>Wait for Finish</strong>" is checked, FastCopy won't execute standby/hibernate/shutdown until finishing commands.</td></tr>
+		<tr><th colspan="2">Shutdown/Standby</th></tr>
+		<tr><td colspan="2">Before executing to standby/hibernate/shutdown mode, FastCopy shows count down(60sec) dialog that has a "cancel" button.<br>
+		If another FastCopy is running, FastCopy will wait for it to finish and start to count down.</td></tr>
+		<tr><td nowrap><strong>Grace</strong></td><td>The count-down time can be specified.</td></tr>
+		<tr><td><strong>Don't execute, if error occurred.</strong></td><td>execute only if succeeded</td></tr>
+		</table>
+	</div>
+
+	<a name="extend_filter">
+	<h3 class="help_head3">Settings -> Show Extended Filter</h3>
+	<div class="help_sub_section">
+		Show Extended Filter(timestamp/size filter)
+	</div>
+
+	<h3 class="help_head3">Option -> Swap Source <-> DestDir</h3>
+	<div class="help_sub_section">
+		Swap Source for DestDir (for mutual update or etc.).<br>
+		Source/DestDir will be modified based on <a href="#backslash_behavior">different behavior whether the end of DestDir character is '\' or not</a>. (For example, If Source is "C:\AAA\BBB" and DestDir is "D:\CCC\", then Source becomes "D:\CCC\BBB" and DestDir becomes "C:\AAA\")<br>
+		If Source has two or more files/directories, this menu item is disabled.<br>
+		CTL+ALT+S is shortcut of this function.
+	</div>
+
+	<a name="job"/>
+	<h3 class="help_head3">Job Manage -> Add/Del Job</h3>
+	<div class="help_sub_section">
+		Register/Restore parameters in main window as named job.
+		<table class="help_table" border="4">
+		<tr><td nowrap><strong>Add/Modify</strong></td>
+		<td>Add/Modify parameters in main window(Source/DestDir, Operation mode, Buffer size, Nonstop/Verify/Estimate/ACL/AltStream/Wipe&Delete/Filter checkboxes, Filter strings, HDD mode) as named job.</td></tr>
+		<tr><td nowrap><strong>Delete</strong></td>
+		<td>Delete registered job.</td></tr>
+		<tr><td nowrap><strong>Open "Windows Task Scheduler"</strong></td>
+		<td>Open "Windows Task Scheduler". <br>(Only shortcut. FastCopy doesn't have any function for windows task scheduler)</td></tr>
+		</table>
+	</div>
+</div>
+
+
+<a name="cmdline"/>
+<h2 class="help_head2">7. Command Line</h2>
+<div class="help_section">
+	A basic format is as follows. <br><br>
+	<strong>FastCopy.exe [/options] file1 file2 ... [/to=dest_dir]</strong><br><br>
+
+	<table class="help_table" border="4">
+	<tr><td>The separate character is space(' ') in command line mode. (not semicolon).<br>
+			If filename contains space character, please enclose with double quotation marks.<br>
+			Ex) fastopy.exe C:\Windows "C:\Program Files" /to="D:\Backup Folder\"
+	</td></tr>
+	<tr><td>If /to= option is used, it must be described as the last parameter.</td></tr>
+	<tr><td>If you want to wait to finish, please use "start /wait ..." command.<br>
+		Ex) start "" /wait FastCopy.exe [/options]...</td></tr>
+	</table><br>
+
+	Supported options are as follows. 
+	(Please do not put space characters before and behind "=")<br><br>
+
+	<div class="help_sub_section">
+
+	<table class="help_table" border="2">
+	<tr><td nowarp><strong>/cmd=<br>
+		&nbsp;&nbsp;(noexist_only<br>
+		&nbsp;&nbsp;|&nbsp;diff<br>
+		&nbsp;&nbsp;|&nbsp;update<br>
+		&nbsp;&nbsp;|&nbsp;force_copy<br>
+		&nbsp;&nbsp;|&nbsp;sync<br>
+		&nbsp;&nbsp;|&nbsp;move<br>
+		&nbsp;&nbsp;|&nbsp;delete)
+		</strong></td>
+		<td>Specify operation mode. (By default, diff mode is used.<br>&nbsp;If delete mode is specified, then "/to=desit_dir" is not used.)
+		<table class="help_table" border="1">
+		<tr><th nowrap>cmdline</th><th>in GUI</th>
+		<tr><td nowrap><strong>noexist_only</strong></td><td>Diff (No Overwrite)</td></tr>
+		<tr class="tr_default"><td nowrap><strong>diff</strong></td><td>Diff (Size/date)</td></tr>
+		<tr><td nowrap><strong>update</strong></td><td>Diff (update)</td></tr>
+		<tr><td nowrap><strong>force_copy</strong></td><td>Copy (Overwrite)</td></tr>
+		<tr><td nowrap><strong>sync</strong></td><td>Sync (Size/date)</td></tr>
+		<tr><td nowrap><strong>move</strong></td><td>Move (Overwrite)</td></tr>
+		<tr><td nowrap><strong>delete</strong></td><td>Delete</td></tr>
+		</table>
+	</td></tr>
+	<!--
+	/cmd_opt=date_size/newer/noexist/always (cmd=diff/sync/move only)
+	-->
+	<tr><td nowrap><strong>/auto_close</strong></td><td>Close automatically after execution is finished with no errors.</td></tr>
+	<tr><td nowrap><strong>/force_close</strong></td><td>Close automatically and forcibly after execution is finished.</td></tr>
+	<tr><td nowrap><strong>/open_window</strong></td><td>It will not be stored in the task notification area.</td></tr>
+	<tr><td nowrap><strong>/estimate</strong></td><td>Estimate complete time.(to disable, /estimate=FALSE)</td></tr>
+	<tr><td nowrap><strong>/balloon(=FALSE)</strong></td><td>Show balloon notification at finish. (to disable, /balloon=FALSE)</td></tr>
+	<tr><td nowrap><strong>/no_ui</strong></td><td><a name="#no_ui"/>Dialog box will not be shown. This is for background tasks.
+		If /no_ui is used, /no_confirm_del /no_confirm_stop /force_close are set automatically.
+		If FastCopy runs in session 0 (e.g. running with task scheduler), /no_ui is set automatically.
+		However even if /no_ui is set, standby/hibernate/shutdown countdown dialog will not be prevented.
+	</td></tr>
+	<tr><td nowrap><strong>/no_confirm_del</strong></td><td>Don't confirm before deleting.</td></tr>
+	<tr><td nowrap><strong>/no_confirm_stop</strong></td><td>Don't show error dialog, even if critical errors occur.</td></tr>
+	<tr><td nowrap><strong>/no_exec</strong></td><td>Don't start to execute.</td></tr>
+	<tr><td nowrap><strong>/error_stop</strong></td><td>Show error dialog (and operation is interrupted), if an error occurs. (to disable, /error_stop=FALSE)</td></tr>
+	<tr><td nowrap><strong>/bufsize=N(MB)</strong></td><td>Specify the size(MB) of the main buffer for Read/Write operation.</td></tr>
+	<tr><td nowrap><strong>/log</strong></td><td>Write the operation/errors information to the logfile(FastCopy.log). (to disable, /log=FALSE)</td></tr>
+	<tr><td nowrap><strong>/logfile=filename</strong></td><td>Specify the filename of logfile.</td></tr>
+	<tr><td nowrap><strong>/filelog</strong></td><td>Write to the filelog(detail of copy/delete files). It is stored TIMESTAMP.log in FastCopy/Log directory. If using verify mode, write digest data as additional data. (To specify filelogname, /filelog=filename)</td></tr>
+	<tr><td nowrap><strong>/utf8</strong></td><td>Write to the logfile using UTF-8 encoding (supports Unicode).</td></tr>
+	<tr><td nowrap><strong>/skip_empty_dir</strong></td><td>Skip to create empty directories when /include or /exclude option is used. (to disable, /skip_empty_dir=FALSE)</td></tr>
+	<tr><td nowrap><strong>/job=job_name</strong></td><td>Specify the job that is already registered.</td></tr>
+	<tr><td nowrap><strong>/force_start(=N)</strong></td><td>Start at once without waiting for the finish of other FastCopy executing. (/force_start=2-N ... specify number of max parallel process)</td></tr>
+	<tr><td nowrap><strong>/disk_mode=(auto|same|diff)</strong></td><td>Specify <a href="#disk_mode">Auto/Same/Diff HDD mode</a>. (default: Auto)</td></tr>
+	<tr><td nowrap><strong>/speed=(full|autoslow|<br>&nbsp;9-1(90%-10%)|suspend)</strong></td><td>Specify speed control level.</td></tr>
+	<tr><td nowrap><strong>/srcfile="files.txt"</strong></td><td>Specify source files by textfile. User is able to describe 1 filename per line. (<strong>Attention:</strong>We don't recommend specifying a lot of files</td></tr>
+	<tr><td nowrap><strong>/srcfile_w="files.txt"</strong></td><td>same as "/srcfile=", except describing by UNICODE.</td></tr>
+	<tr><td nowrap><strong>/include="..."</strong></td><td>Specify Include filter. (<a href="#filter">details</a>)</td></tr>
+	<tr><td nowrap><strong>/exclude="..."</strong></td><td>Specify Exclude filter. (<a href="#filter">details</a>)</td></tr>
+	<tr><td nowrap><strong>/from_date</strong></td><td>Specify oldest timestamp filter. (<a href="#filter">details</a>)</td></tr>
+	<tr><td nowrap><strong>/to_date</strong></td><td>Specify newest timestamp filter. (<a href="#filter">details</a>)</td></tr>
+	<tr><td nowrap><strong>/min_size="..."</strong></td><td>Specify minimum size filter. (<a href="#filter">details</a>)</td></tr>
+	<tr><td nowrap><strong>/max_size="..."</strong></td><td>Specify maximum size filter. (<a href="#filter">details</a>)</td></tr>
+	<tr><td nowrap><strong>/wipe_del</strong></td><td>Rename filename and wipe(overwrite Random data) before deleting.</td></tr>
+	<tr><td nowrap><strong>/acl</strong></td><td>Copy ACL/EA (only NTFS)(to disable, /acl=FALSE)</td></tr>
+	<tr><td nowrap><strong>/stream</strong></td><td>Copy Alternate Stream (only NTFS) (to disable, /stream=FALSE)</td></tr>
+	<tr><td nowrap><strong>/reparse</strong></td><td>Copy junction/mountpoint/symlink itself(to disable, /reparse=FALSE) (<a href="#reparse">details</a>)</td></tr>
+	<tr><td nowrap><strong>/verify</strong></td><td>Verify written files data by <a href="">xxHash(MD5/SHA-1/SHA-256)</a> (to disable, /verify=FALSE) (<a href="#verify">details</a>)</td></tr>
+	<tr><td nowrap><strong>/linkdest</strong></td><td><a name="linkdest"/>Reproduce hardlink as much as possible. (<a href="#hardlink">details</a>)</td></tr>
+	<tr><td nowrap><strong>/recreate</strong></td><td><a name="recreate"/>Change updating behavior "overwrite the target" to "delete and recreate the target". (If /linkdest option is enabled, this option is enabled by default.) If you want always to enable, write [main] recreate=1 in FastCopy2.ini.</td></tr>
+	<tr><td nowrap><strong>/postproc=action_name</strong></td><td>Specify post-process action name (to disable, /postproc=FALSE)</td></tr>
+	</table>
+
+	<strong>Ex)</strong> Copy C:\Test Folder to D:\Backup Folder by "diff(Size/Date)" mode is...<br>
+	&nbsp; FastCopy.exe /cmd=diff "C:\Test Folder" /to="D:\Backup Folder\"<br>
+	<br>
+	<strong>Exit status code)</strong> Command is succeeded: 0, or failed: -1
+
+</div>
+
+
+<a name="warning"/>
+<h2 class="help_head2">8. Warning</h2>
+<div class="help_section">
+	In some modes, destination files that exist with the same filename in source directories, are overwritten forcibly without confirming. <br>
+	In sync mode, destination files that do not exist with the same filename in source directories, are deleted forcibly without confirming.<br>
+	In delete mode, target files and directories are deleted forcibly without confirming. <br>
+	<br>
+	If FastCopy has bugs, there is a possibility of serious problems.<br>
+	Please use at your own risk. (See <a href="#license">2. License</a>)
+</div>
+
+
+<a name="contact"/>
+<h2 class="help_head2">9. Support Forum/Latest Version</h2>
+<div class="help_section">
+	Support Forum: <a href="https://groups.google.com/forum/#!forum/fastcopy-bb-eng">https://groups.google.com/forum/#!forum/fastcopy-bb-eng</a><br>
+	Latest Version: <a href="https://fastcopy.jp/en/">https://fastcopy.jp/en/</a>
+</div>
+
+
+<a name="misc"/>
+<h2 class="help_head2">10. Misc</h2>
+<div class="help_section">
+	The setting file(FastCopy2.ini) and log files are created in the following directory. <br>
+	<div class="help_sub_section">
+	<strong>If FastCopy is installed to Program Files</strong>, these are created in C:\Users\(USER)\AppData\roaming\FastCopy\ (Menu File(F) -> UserDir(U))<br>
+	<strong>For other cases</strong>, these are created in the same directory as FastCopy.exe <br>
+	</div>
+
+	The core part for high performance copy is independent from GUI, you can use it(on GPLv3 license) in your applications.<br>
+	<br>
+	If FastCopy terminated abnormally, fastcopy_exception.log is generated.<br>
+	(Please send this file to <a href="#contact">the author</a>, I will use it for quality improvement)
+</div>
+
+<a name="history"/>
+<h2 class="help_head2">11. History</h2>
+<div class="help_section">
+
+<table class="help_table" border="4">
+
+<tr><th>Version</th><th>Detail</th></tr>
+
+<tr><td>v3.61</td><td>
+Fixed an issue that when ACL/AltStream is enabled, they are not copied correctly. (v3.60 only)
+</td></tr>
+
+<tr><td>v3.60</td><td>
+Add multi-threading for opening source files. (Big effect for network drive)<br>
+Fix to reflect timestamp for WevDAV(for OneDrive).<br>
+Prevent hardlink errors for non NTFS drive.
+</td></tr>
+
+<tr><td>v3.53-v3.54</td><td>
+Speed control designation more accurately. <br>
+Slightly improved performance in the same HDD mode.<br>
+Fixed problem that shell extension does not work. (v3.53 only)
+</td></tr>
+
+<tr><td>v3.52</td><td>
+Change hash default to xxHash. <br>
+xxHash 3 to 4 times faster verification calculation speed (Eliminate verification processing neck in 1 ~ 2 GB/s or more environment). <br>
+Add /SILENT options etc to the installer (check with /h option).
+</td></tr>
+
+<tr><td>v3.51</td><td>
+Add verify error behavior option (deleting error-file instead renaming to .fc_verify_err).<br>
+Fix include/exclude filter problem. (if same dir and file names was specified in the filter, only last same name entry was enabled).<br>
+Misc refine.
+</td></tr>
+
+<tr><td>v3.50</td><td>
+In the Source selection dialog, it can be selected files and dirs simultaneously.<br>
+Improved network drive performance by adaptively changing the I/O size and async I/O issue number.<br>
+(With a high latency network drive, it is twice or more faster than Explorer and older version)<br>
+
+When minimizing, if the icon is hidden in the task notification area, display it on the task bar.<br>
+Fixed the exit code did not become -1 on error.<br>
+Improve settings (add actions at minimized, shell extensions, etc.)<br>
+Change to 1 file installer and add "Expland" button to installer.<br>
+Output a dump at exception.<br>
+To be uninstallable via "application and function".<br>
+Represent the completion status in the color at the top of the icon.(Green: complete, red: error)<br>
+Changed the Official website to <a href="https://fastcopy.jp/en/"> https://fastcopy.jp/en/</a>.
+
+</td></tr>
+<tr><td>v3.41</td><td>
+Modify I/O parameters and improve performance for network drive<br>
+Add update check at startup. (It can be changed in Settings -&gt; Misc)<br>
+Fix not to show copy mode option when delete mode is selected.<br>
+Reduce the occurrence of the"Not empty" error when directories are deleted. (OS is the cause)<br>
+Fix incorrect same/different drive judgement for the volume using two or more physical HDDs.<br>
+Misc refine.
+</td></tr>
+<tr><td>v3.40</td><td>
+Add Update Check (Menu -&gt; Help -&gt; Check Update).<br>
+Support multi-line input in Source Edit Control.<br>
+Improve estimating precision. (Investigate not only source but also destination)<br>
+Change default action of Source button. (It shows FileSelection Dialog as default. It can be changed in Settings -&gt; Misc)<br>
+Support to enable/disable Large Fetch option. (Settings -&gt; I/O Settings)
+</td></tr>
+<tr><td>v3.32</td><td>
+Fix an exception that occurred when opening the AboutDialog.<br>
+Fix to interpret BOM that is specified by /srcfile_w option.
+</td></tr>
+<tr><td>v3.31</td><td>
+Increase initial main buffer size(x64:128MB -&gt; 256MB, x86:64MB -&gt; 128MB).<br>
+Increase maximum attributes buffer size (x64:1GB -&gt; 8GB).<br>
+Increase path buffer size for verify/move (x64:8MB -&gt; 128MB) and configurations can be made by fastcopy2.ini (max_movesize/max_digestsize).<br>
+Change setting tolerance of timestamp(ms) to 64bit (max 23days -&gt; unlimit).<br>
+Use NOBUFFERING flag even if it is a network file when the file is big.<br>
+Allow BOM in the specified files by /srcfile= or /srcfile_w= options.<br>
+Improve buffer separation policy.<br>
+Take a measure for DLL preload attack.
+</td></tr>
+
+<tr><td>v3.30</td><td>
+Add xxHash option for verify.<br>
+Add file creation mode (experimental).<br>
+Fixed a problem that only the deepest filter was used if multiple filters with different depth were specified.<br>
+Fix same/diff network drive detection.<br>
+Misc refine.
+
+</td></tr>
+</table>
+
+Old versions summary (detail information is <a href="https://fastcopy.jp/help/fc_history.html.en" target="_blank">this</a>)
+
+<table class="help_table" border="4">
+<tr><th>Version</th><th>Detail</th></tr>
+<tr><td>v3.00<br> - v3.27</td><td>
+<a href="#setting_io">Overlapped I/O</a>, <a href="#filter">Relative path filter</a>, <a href="#setting_parallel">Optimize for parallel running</a>, <a href="#license">Change license to GPLv3</a><br>
+Support UserMode(not Admin) Shell Extension.<br>
+Improve speed for listing directory entries. (using FIND_FIRST_EX_LARGE_FETCH for high-latency environment or huge number of directory entries)<br>
+Add SHA-256 to <a href="#hash_mode">Verify Mode</a>
+</td></tr>
+
+<tr><td>v2.00</td><td>
+<a href="#job">JobMng</a>, <a href="#setting_copyopt">Interpret Symlink</a>, <a href="#buttons">Simple compare</a>, <a href="#options">ACL/AltStrem</a>, <a href="#buttons">Speed Control</a>
+</td></tr>
+
+<tr><td>v1.00</td><td>1.00 release (2005/03/10)</td></tr>
+
+<tr><td>v0.50</td><td>First alpha release (2004/09/27)</td></tr>
+</table>
+</div>
+</div>
+</body>
+</html>
