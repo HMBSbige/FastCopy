@@ -197,9 +197,6 @@
     <PreBuildEvent>
       <Command>xcopy ..\..\obj\ReleaseTlib\*.obj obj\ReleaseTlib\ /Y /Q</Command>
     </PreBuildEvent>
-    <PostBuildEvent>
-      <Command>copy ..\..\release\fastext1.dll  ..\..\x64\release\</Command>
-    </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <Midl>
@@ -254,9 +251,6 @@
     <PreBuildEvent>
       <Command>xcopy ..\..\x64\obj\ReleaseTlib\*.obj x64\obj\ReleaseTlib\ /Y /Q</Command>
     </PreBuildEvent>
-    <PostBuildEvent>
-      <Command>copy ..\..\x64\release\fastex64.dll ..\..\release\</Command>
-    </PostBuildEvent>
   </ItemDefinitionGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
